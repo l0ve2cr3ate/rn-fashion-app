@@ -1,5 +1,13 @@
 import React, { FC } from "react";
-import { Dimensions, StyleSheet, Text, View, Image } from "react-native";
+import {
+  Dimensions,
+  StyleSheet,
+  View,
+  Image,
+  ImageRequireSource,
+} from "react-native";
+
+import { Text } from "../../components";
 
 const { width, height } = Dimensions.get("window");
 
@@ -13,30 +21,23 @@ const styles = StyleSheet.create({
   underlay: {
     ...StyleSheet.absoluteFillObject,
     justifyContent: "flex-end",
-  },
-  picture: {
-    ...StyleSheet.absoluteFillObject,
-    width: undefined,
-    height: undefined,
-    borderBottomRightRadius: BORDER_RADIUS,
+    alignItems: "center",
   },
   titleContainer: {
     justifyContent: "center",
     alignItems: "center",
     height: 100,
   },
-  title: {
-    lineHeight: 80,
-    fontSize: 80,
-    fontFamily: "SFProText-Bold",
-    color: "white",
-  },
 });
 
 interface SlideProps {
   title: string;
   right?: boolean;
-  picture: number;
+  picture: {
+    src: ImageRequireSource;
+    width: number;
+    height: number;
+  };
 }
 
 const Slide: FC<SlideProps> = ({ title, right, picture }) => {
@@ -48,10 +49,16 @@ const Slide: FC<SlideProps> = ({ title, right, picture }) => {
   return (
     <View style={styles.container}>
       <View style={styles.underlay}>
-        <Image source={picture} style={styles.picture} />
+        <Image
+          source={picture.src}
+          style={{
+            width: width - BORDER_RADIUS,
+            height: ((width - BORDER_RADIUS) * picture.height) / picture.width,
+          }}
+        />
       </View>
       <View style={[styles.titleContainer, { transform }]}>
-        <Text style={styles.title}>{title}</Text>
+        <Text variant="hero">{title}</Text>
       </View>
     </View>
   );
