@@ -1,11 +1,17 @@
 import React, { useRef } from "react";
-import { Dimensions, StyleSheet, View } from "react-native";
-import Animated, { divide, multiply } from "react-native-reanimated";
+import { Dimensions, Image, StyleSheet, View } from "react-native";
+import Animated, {
+  divide,
+  Extrapolate,
+  interpolate,
+  multiply,
+} from "react-native-reanimated";
 import { useScrollHandler, interpolateColor } from "react-native-redash";
 
-import Slide, { SLIDE_HEIGHT, BORDER_RADIUS } from "./Slide";
+import Slide, { SLIDE_HEIGHT } from "./Slide";
 import Subslide from "./Subslide";
 import Dot from "./Dot";
+import { theme } from "../../components";
 
 const { width } = Dimensions.get("window");
 
@@ -14,9 +20,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
   },
+  underlay: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    borderBottomRightRadius: theme.borderRadii.xl,
+    overflow: "hidden",
+  },
   slider: {
     height: SLIDE_HEIGHT,
-    borderBottomRightRadius: BORDER_RADIUS,
+    borderBottomRightRadius: theme.borderRadii.xl,
   },
   footer: {
     flex: 1,
@@ -24,11 +37,11 @@ const styles = StyleSheet.create({
   footerContent: {
     flex: 1,
     backgroundColor: "white",
-    borderTopLeftRadius: BORDER_RADIUS,
+    borderTopLeftRadius: theme.borderRadii.xl,
   },
   pagination: {
     ...StyleSheet.absoluteFillObject,
-    height: BORDER_RADIUS,
+    height: theme.borderRadii.xl,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
@@ -97,6 +110,31 @@ const Onboading = () => {
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.slider, { backgroundColor }]}>
+        {slides.map(({ picture }, index) => {
+          const opacity = interpolate(x, {
+            inputRange: [
+              (index - 0.5) * width,
+              index * width,
+              (index + 0.5) * width,
+            ],
+            outputRange: [0, 1, 0],
+            extrapolate: Extrapolate.CLAMP,
+          });
+          return (
+            <Animated.View key={index} style={[styles.underlay, { opacity }]}>
+              <Image
+                source={picture.src}
+                style={{
+                  width: width - theme.borderRadii.xl,
+                  height:
+                    ((width - theme.borderRadii.xl) * picture.height) /
+                    picture.width,
+                }}
+              />
+            </Animated.View>
+          );
+        })}
+
         <Animated.ScrollView
           ref={scroll}
           horizontal
@@ -131,20 +169,23 @@ const Onboading = () => {
               transform: [{ translateX: multiply(x, -1) }],
             }}
           >
-            {slides.map(({ subtitle, description }, index) => (
-              <Subslide
-                key={index}
-                onPress={() => {
-                  if (scroll.current) {
-                    scroll.current
-                      .getNode()
-                      .scrollTo({ x: width * (index + 1), animated: true });
-                  }
-                }}
-                {...{ subtitle, description }}
-                last={index === slides.length - 1}
-              />
-            ))}
+            {slides.map(({ subtitle, description }, index) => {
+              const last = index === slides.length - 1;
+              return (
+                <Subslide
+                  key={index}
+                  onPress={() => {
+                    if (last) {
+                    } else {
+                      scroll.current
+                        ?.getNode()
+                        .scrollTo({ x: width * (index + 1), animated: true });
+                    }
+                  }}
+                  {...{ subtitle, description, last }}
+                />
+              );
+            })}
           </Animated.View>
         </View>
       </View>
