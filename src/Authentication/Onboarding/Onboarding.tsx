@@ -8,10 +8,13 @@ import Animated, {
 } from "react-native-reanimated";
 import { useScrollHandler, interpolateColor } from "react-native-redash";
 
+import { Routes, StackNavigationProps } from "../../components/Navigation";
+import { theme } from "../../components";
+
 import Slide, { SLIDE_HEIGHT } from "./Slide";
 import Subslide from "./Subslide";
 import Dot from "./Dot";
-import { theme } from "../../components";
+
 
 const { width } = Dimensions.get("window");
 
@@ -100,7 +103,11 @@ const slides = [
   },
 ];
 
-const Onboading = () => {
+export const assets = slides.map((slide) => slide.picture.src);
+
+const Onboading = ({
+  navigation,
+}: StackNavigationProps<Routes, "Onboarding">) => {
   const scroll = useRef<Animated.ScrollView>(null);
   const { scrollHandler, x } = useScrollHandler();
   const backgroundColor = interpolateColor(x, {
@@ -176,6 +183,7 @@ const Onboading = () => {
                   key={index}
                   onPress={() => {
                     if (last) {
+                      navigation.navigate("Welcome");
                     } else {
                       scroll.current
                         ?.getNode()
