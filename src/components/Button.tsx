@@ -16,12 +16,13 @@ const styles = StyleSheet.create({
 });
 
 interface ButtonProps {
-  label: string;
+  label?: string;
   variant: "default" | "primary" | "transparent";
   onPress: () => void;
+  children?: React.ReactNode;
 }
 
-const Button: FC<ButtonProps> = ({ label, variant, onPress }) => {
+const Button: FC<ButtonProps> = ({ label, variant, onPress, children }) => {
   const theme = useTheme<Theme>();
 
   const backgroundColor =
@@ -31,16 +32,20 @@ const Button: FC<ButtonProps> = ({ label, variant, onPress }) => {
       ? "transparent"
       : theme.colors.grey;
   const color =
-    variant === "primary" ? theme.colors.white : theme.colors.button;
+    variant === "primary" ? theme.colors.white : theme.colors.secondary;
 
   return (
     <RectButton
       style={[styles.container, { backgroundColor }]}
       {...{ onPress }}
     >
-      <Text variant="button" style={{ color }}>
-        {label}
-      </Text>
+      {children ? (
+        children
+      ) : (
+        <Text variant="button" style={{ color }}>
+          {label}
+        </Text>
+      )}
     </RectButton>
   );
 };
