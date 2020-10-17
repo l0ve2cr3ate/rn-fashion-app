@@ -50,7 +50,9 @@ const Container: FC<ContainerProps> = ({ children, footer }) => {
           borderTopLeftRadius={0}
           backgroundColor="white"
           flex={1}
-        />
+        >
+          {children}
+        </Box>
       </Box>
       <Box backgroundColor="secondary" paddingTop="m">
         {footer}
