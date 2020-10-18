@@ -1,9 +1,8 @@
+/* eslint-disable max-len */
 import React, { FC } from "react";
 import Svg, { Path } from "react-native-svg";
 
-import theme, { Box } from "../../components/Theme";
-
-const SIZE = theme.borderRadii.l * 2;
+import { Box, useTheme } from "../../components/Theme";
 
 const Google = () => (
   <Svg width={20} height={20} viewBox="0 0 533.5 544.3">
@@ -49,6 +48,8 @@ interface SocialIconProps {
 }
 
 const SocialIcon: FC<SocialIconProps> = ({ children }) => {
+  const theme = useTheme();
+  const SIZE = theme.borderRadii.l * 2;
   return (
     <Box
       marginHorizontal="s"

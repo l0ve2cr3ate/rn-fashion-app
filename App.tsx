@@ -4,7 +4,8 @@ import { ThemeProvider } from "@shopify/restyle";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { assets as authenticationAssets } from "./src/Authentication/Onboarding";
-import { LoadAssets, theme } from "./src/components";
+import { LoadAssets } from "./src/components";
+import { theme } from "./src/components/Theme";
 import { AuthenticationNavigator } from "./src/Authentication";
 
 const assets = [...authenticationAssets];
