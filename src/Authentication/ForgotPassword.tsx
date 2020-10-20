@@ -4,10 +4,11 @@ import { Linking } from "react-native";
 import * as Yup from "yup";
 
 import { Box, Button, Container, Text } from "../components";
+import TextInput from "../components/Form/TextInput";
 import { Routes, StackNavigationProps } from "../components/Navigation";
 
 import Footer from "./components/Footer";
-import TextInput from "./components/Form/TextInput";
+
 
 const ForgotPasswordSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
@@ -36,7 +37,7 @@ const ForgotPassword = ({
   );
 
   return (
-    <Container {...{ footer }}>
+    <Container pattern={2} {...{ footer }}>
       <Box padding="xl" justifyContent="center" flex={1}>
         <Text variant="title1" textAlign="center" marginBottom="s">
           Forgot Password?
@@ -65,7 +66,7 @@ const ForgotPassword = ({
             <Button
               variant="primary"
               onPress={handleSubmit}
-              label="Log into your account"
+              label="Change password"
             />
           </Box>
         </Box>
