@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { TextInput as RNTextInput } from "react-native";
 
 import { Button, Container, Text } from "../components";
 import { Box } from "../components/Theme";
@@ -34,8 +35,8 @@ const SignUp = ({ navigation }: StackNavigationProps<Routes, "Login">) => {
     }
   );
 
-  const password = useRef<typeof TextInput>(null);
-  const passwordConfirmation = useRef<typeof TextInput>(null);
+  const password = useRef<RNTextInput>(null);
+  const passwordConfirmation = useRef<RNTextInput>(null);
 
   const footer = (
     <Footer
@@ -94,8 +95,8 @@ const SignUp = ({ navigation }: StackNavigationProps<Routes, "Login">) => {
             placeholder="Confirm your Password..."
             onChangeText={handleChange("passwordConfirmation")}
             onBlur={handleBlur("passwordConfirmation")}
-            error={errors.password}
-            touched={touched.password}
+            error={errors.passwordConfirmation}
+            touched={touched.passwordConfirmation}
             secureTextEntry
             autoCompleteType="password"
             autoCapitalize="none"

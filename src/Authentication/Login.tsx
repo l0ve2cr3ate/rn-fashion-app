@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { TextInput as RNTextInput } from "react-native";
 
 import { Button, Container, Text } from "../components";
 import { Box } from "../components/Theme";
@@ -33,7 +34,7 @@ const Login = ({ navigation }: StackNavigationProps<Routes, "Login">) => {
     validationSchema: LoginSchema,
   });
 
-  const password = useRef<typeof TextInput>(null);
+  const password = useRef<RNTextInput>(null);
 
   const footer = (
     <Footer
@@ -90,7 +91,10 @@ const Login = ({ navigation }: StackNavigationProps<Routes, "Login">) => {
               checked={values.remember}
               onChange={() => setFieldValue("remember", !values.remember)}
             />
-            <Button onPress={() => true} variant="transparent">
+            <Button
+              onPress={() => navigation.navigate("ForgotPassword")}
+              variant="transparent"
+            >
               <Text color="primary">Forgot password</Text>
             </Button>
           </Box>

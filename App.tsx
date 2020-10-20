@@ -1,5 +1,4 @@
 import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
 import { ThemeProvider } from "@shopify/restyle";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
@@ -22,9 +21,7 @@ export default function App() {
     <ThemeProvider {...{ theme }}>
       <LoadAssets {...{ fonts, assets }}>
         <SafeAreaProvider>
-          <NavigationContainer>
-            <AuthenticationNavigator />
-          </NavigationContainer>
+          <AuthenticationNavigator />
         </SafeAreaProvider>
       </LoadAssets>
     </ThemeProvider>

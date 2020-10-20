@@ -15,8 +15,8 @@ interface TextInputProps extends RNTextInputProps {
   error?: string;
 }
 
-const TextInput = forwardRef(
-  ({ icon, touched, error, ...props }: TextInputProps, ref) => {
+const TextInput = forwardRef<RNTextInput, TextInputProps>(
+  ({ icon, touched, error, ...props }, ref) => {
     const theme = useTheme();
     const SIZE = theme.borderRadii.m * 2.5;
     // eslint-disable-next-line no-nested-ternary
