@@ -9,7 +9,6 @@ import { Routes, StackNavigationProps } from "../components/Navigation";
 
 import Footer from "./components/Footer";
 
-
 const ForgotPasswordSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
 });

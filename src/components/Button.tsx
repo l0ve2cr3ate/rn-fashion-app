@@ -17,20 +17,15 @@ const styles = StyleSheet.create({
 
 interface ButtonProps {
   label?: string;
-  variant: "default" | "primary" | "transparent";
+  variant: "default" | "primary";
   onPress: () => void;
-  children?: React.ReactNode;
 }
 
-const Button: FC<ButtonProps> = ({ label, variant, onPress, children }) => {
+const Button: FC<ButtonProps> = ({ label, variant, onPress }) => {
   const theme = useTheme<Theme>();
 
   const backgroundColor =
-    variant === "primary"
-      ? theme.colors.primary
-      : variant === "transparent"
-      ? "transparent"
-      : theme.colors.grey;
+    variant === "primary" ? theme.colors.primary : theme.colors.grey;
   const color =
     variant === "primary" ? theme.colors.white : theme.colors.secondary;
 
@@ -39,13 +34,9 @@ const Button: FC<ButtonProps> = ({ label, variant, onPress, children }) => {
       style={[styles.container, { backgroundColor }]}
       {...{ onPress }}
     >
-      {children ? (
-        children
-      ) : (
-        <Text variant="button" style={{ color }}>
-          {label}
-        </Text>
-      )}
+      <Text variant="button" style={{ color }}>
+        {label}
+      </Text>
     </RectButton>
   );
 };
