@@ -1037,7 +1037,7 @@
     xcode "^3.0.0"
     xml-js "^1.6.11"
 
-"@expo/vector-icons@^10.0.2":
+"@expo/vector-icons@^10.0.0", "@expo/vector-icons@^10.0.2":
   version "10.2.1"
   resolved "https://registry.yarnpkg.com/@expo/vector-icons/-/vector-icons-10.2.1.tgz#47fb2fa12d7ad601835babde6bd3ddea7f6fde89"
   integrity sha512-clYQZFLeU2y23n03hXg18EEsZS5c73sJJnfderztfSAqkUXkfUtv07fwuprYwbHIvgFkw6L7R6xJOCVYtS85iQ==
@@ -1301,6 +1301,14 @@
     query-string "^6.13.5"
     react-is "^16.13.0"
     use-subscription "^1.4.0"
+
+"@react-navigation/drawer@^5.9.3":
+  version "5.9.3"
+  resolved "https://registry.yarnpkg.com/@react-navigation/drawer/-/drawer-5.9.3.tgz#d8b9a6d46a7fe436fcc8d410a10017852e420042"
+  integrity sha512-bc9cyJGONvTf6tsdwjgyMV5VMVIgJc9URMGbiXzj68Vp94lsxi6YbsOW01ErLpD8ltyCBNEC+Ll/1vv6CZiJaQ==
+  dependencies:
+    color "^3.1.2"
+    react-native-iphone-x-helper "^1.2.1"
 
 "@react-navigation/native@^5.7.6":
   version "5.7.6"
