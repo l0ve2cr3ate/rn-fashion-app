@@ -62,6 +62,12 @@ export const theme = {
       fontFamily: "SFProDisplay-Regular",
       color: "text",
     },
+    header: {
+      fontSize: 12,
+      lineHeight: 24,
+      fontFamily: "SFProDisplay-Semibold",
+      color: "secondary",
+    },
   },
   breakpoints: {},
 };
