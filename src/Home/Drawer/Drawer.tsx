@@ -11,6 +11,7 @@ export const DRAWER_WIDTH = width * 0.8;
 const aspectRatio = 750 / 1125;
 const height = DRAWER_WIDTH * aspectRatio;
 
+export const assets = [require("../../../assets/drawer.png")];
 const items: DrawerIconProps[] = [
   {
     icon: "zap",
@@ -88,17 +89,6 @@ const Drawer = () => {
       </Box>
       <Box flex={0.8}>
         <Box flex={1} backgroundColor="secondary" />
-        <Box flex={1} backgroundColor="primary" />
-        <Image
-          source={require("../../../assets/pattern3.png")}
-          style={{
-            position: "absolute",
-            left: 0,
-            right: 0,
-            width: DRAWER_WIDTH,
-            height,
-          }}
-        />
         <Box
           position="absolute"
           top={0}
@@ -140,12 +130,8 @@ const Drawer = () => {
         overflow="hidden"
       >
         <Image
-          source={require("../../../assets/pattern3.png")}
+          source={assets[0]}
           style={{
-            position: "absolute",
-            left: 0,
-            right: 0,
-            top: -height * (1 - 0.61),
             width: DRAWER_WIDTH,
             height,
             borderTopLeftRadius: theme.borderRadii.xl,

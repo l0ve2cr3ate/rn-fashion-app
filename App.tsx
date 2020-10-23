@@ -7,10 +7,10 @@ import { assets as authenticationAssets } from "./src/Authentication/Onboarding"
 import { LoadAssets } from "./src/components";
 import { theme } from "./src/components/Theme";
 import { AuthenticationNavigator } from "./src/Authentication";
-import { HomeNavigator } from "./src/Home";
+import { HomeNavigator, assets as homeAssets } from "./src/Home";
 import { AppRoutes } from "./src/components/Navigation";
 
-const assets = [...authenticationAssets];
+const assets = [...authenticationAssets, ...homeAssets];
 
 const fonts = {
   "SFProDisplay-Bold": require("./assets/fonts/SF-Pro-Display-Bold.otf"),
