@@ -7,6 +7,7 @@ import { HomeNavigationProps } from "../../components/Navigation";
 
 import Background from "./Background";
 import Card from "./Card";
+import Categories from "./Categories";
 
 const cards = [
   { index: 3, source: require("../../../assets/4.png") },
@@ -27,8 +28,10 @@ const OutfitIdeas = ({ navigation }: HomeNavigationProps<"OutfitIdeas">) => {
         left={{ icon: "menu", onPress: () => navigation.openDrawer() }}
         right={{ icon: "shopping-bag", onPress: () => true }}
       />
+      <Categories />
       <Box flex={1}>
         <Background />
+
         {cards.map(
           ({ source, index }) =>
             currentIndex < index * step + step && (
