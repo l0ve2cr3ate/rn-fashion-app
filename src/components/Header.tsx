@@ -14,10 +14,13 @@ interface HeaderProps {
     onPress: () => void;
   };
   title: string;
+  dark?: boolean;
 }
 
-const Header: FC<HeaderProps> = ({ title, left, right }) => {
+const Header: FC<HeaderProps> = ({ title, left, right, dark }) => {
   const insets = useSafeAreaInsets();
+  const color = dark ? "white" : "secondary";
+  const backgroundColor = dark ? "secondary" : "lightGrey";
   return (
     <Box
       flexDirection="row"
@@ -28,23 +31,27 @@ const Header: FC<HeaderProps> = ({ title, left, right }) => {
     >
       <RoundedIconButton
         name={left.icon}
-        color="white"
-        backgroundColor="secondary"
         onPress={left.onPress}
-        size={24}
+        size={44}
+        iconRatio={0.4}
+        {...{ color, backgroundColor }}
       />
-      <Text variant="header" color="white">
+      <Text variant="header" {...{ color }}>
         {title.toUpperCase()}
       </Text>
       <RoundedIconButton
         name={right.icon}
-        color="white"
-        backgroundColor="secondary"
         onPress={right.onPress}
-        size={24}
+        size={44}
+        iconRatio={0.4}
+        {...{ color, backgroundColor }}
       />
     </Box>
   );
+};
+
+Header.defaultProps = {
+  dark: false,
 };
 
 export default Header;

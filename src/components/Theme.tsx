@@ -13,11 +13,13 @@ export const theme = {
     text: "rgba(12,13,52, 0.7)",
     white: "white",
     grey: "rgba(12,13, 52, 0.05)",
+    lightGrey: "#FAFAFA",
     primaryLight: "#E7F9F7",
     pink: "#FF87A2",
     orange: "#FE5E33",
     violet: "#442CB9",
     yellow: "#FFC641",
+    lightBlue: "#BFEAF5",
   },
   spacing: {
     s: 8,
