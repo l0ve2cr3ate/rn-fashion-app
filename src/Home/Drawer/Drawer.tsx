@@ -22,7 +22,7 @@ const items: DrawerIconProps[] = [
   {
     icon: "heart",
     label: "Favorite Outfits",
-    screen: "FavoritOutfits",
+    screen: "FavoriteOutfits",
     color: "orange",
   },
   {
