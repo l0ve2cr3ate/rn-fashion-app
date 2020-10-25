@@ -12,6 +12,7 @@ import { HomeNavigationProps } from "../../components/Navigation";
 
 import Footer from "./Footer";
 import Outfit from "./Outfit";
+import TopCurve from "./TopCurve";
 
 const { width: wWidth } = Dimensions.get("window");
 
@@ -73,10 +74,11 @@ const FavoriteOutfits = ({
   const width = (wWidth - theme.spacing.m * 3) / 2;
   const [footerHeight, setFooterHeight] = useState(0);
   const [outfits, setOutfits] = useState(defaultOutfits);
-  const left = useRef<TransitioningView>(null);
-  const right = useRef<TransitioningView>(null);
+  const list = useRef<TransitioningView>(null);
 
-  const transition = <Transition.Change interpolation="easeOut" />;
+  const transition = (
+    <Transition.Change interpolation="easeOut" durationMs={1000} />
+  );
 
   return (
     <Box flex={1} backgroundColor="white">
@@ -92,27 +94,26 @@ const FavoriteOutfits = ({
             paddingBottom: footerHeight,
           }}
         >
-          <Box flexDirection="row">
-            <Box marginRight="m">
-              <Transitioning.View ref={left} {...{ transition }}>
+          <Transitioning.View ref={list} transition={transition}>
+            <Box flexDirection="row">
+              <Box marginRight="m">
                 {outfits
-                  .filter((_, i) => i % 2 !== 0)
+                  .filter(({ id }) => id % 2 !== 0)
                   .map((outfit) => (
                     <Outfit key={outfit.id} {...{ width, outfit }} />
                   ))}
-              </Transitioning.View>
-            </Box>
-            <Box>
-              <Transitioning.View ref={right} {...{ transition }}>
+              </Box>
+              <Box>
                 {outfits
-                  .filter((_, i) => i % 2 === 0)
+                  .filter(({ id }) => id % 2 === 0)
                   .map((outfit) => (
                     <Outfit key={outfit.id} {...{ width, outfit }} />
                   ))}
-              </Transitioning.View>
+              </Box>
             </Box>
-          </Box>
+          </Transitioning.View>
         </ScrollView>
+        <TopCurve footerHeight={footerHeight} />
         <Box
           position="absolute"
           bottom={0}
@@ -126,8 +127,7 @@ const FavoriteOutfits = ({
         >
           <Footer
             onPress={() => {
-              left.current?.animateNextTransition();
-              right.current?.animateNextTransition();
+              list.current?.animateNextTransition();
               setOutfits(outfits.filter((outfit) => !outfit.selected));
             }}
             label="Add to Favorites"
