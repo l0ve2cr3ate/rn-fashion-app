@@ -14,6 +14,7 @@ export const theme = {
     white: "white",
     grey: "rgba(12,13, 52, 0.05)",
     lightGrey: "#FAFAFA",
+    darkGrey: "#808080",
     primaryLight: "#E7F9F7",
     pink: "#FF87A2",
     orange: "#FE5E33",
