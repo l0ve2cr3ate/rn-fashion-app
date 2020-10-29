@@ -19,8 +19,8 @@ interface HeaderProps {
 
 const Header: FC<HeaderProps> = ({ title, left, right, dark }) => {
   const insets = useSafeAreaInsets();
-  const color = dark ? "white" : "secondary";
-  const backgroundColor = dark ? "secondary" : "lightGrey";
+  const color = dark ? "background" : "secondary";
+  const backgroundColor = dark ? "secondary" : undefined;
   return (
     <Box
       flexDirection="row"
@@ -34,6 +34,7 @@ const Header: FC<HeaderProps> = ({ title, left, right, dark }) => {
         onPress={left.onPress}
         size={44}
         iconRatio={0.4}
+        align={backgroundColor === undefined ? "flex-start" : "center"}
         {...{ color, backgroundColor }}
       />
       <Text variant="header" {...{ color }}>
@@ -44,6 +45,7 @@ const Header: FC<HeaderProps> = ({ title, left, right, dark }) => {
         onPress={right.onPress}
         size={44}
         iconRatio={0.4}
+        align={backgroundColor === undefined ? "flex-end" : "center"}
         {...{ color, backgroundColor }}
       />
     </Box>

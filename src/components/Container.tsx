@@ -40,7 +40,7 @@ const Container: FC<ContainerProps> = ({ children, footer, pattern }) => {
         backgroundColor="secondary"
       >
         <StatusBar barStyle="light-content" />
-        <Box backgroundColor="white">
+        <Box backgroundColor="background">
           <Box
             borderBottomLeftRadius="xl"
             overflow="hidden"
@@ -68,8 +68,7 @@ const Container: FC<ContainerProps> = ({ children, footer, pattern }) => {
           />
           <Box
             borderRadius="xl"
-            borderTopLeftRadius={0}
-            backgroundColor="white"
+            backgroundColor="background"
             flex={1}
             justifyContent="center"
             padding="xl"

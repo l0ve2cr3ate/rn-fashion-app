@@ -1,26 +1,43 @@
+import React, { ReactNode } from "react";
 import {
   createBox,
   createText,
   useTheme as useReTheme,
+  ThemeProvider as ReStyleThemeProvider,
 } from "@shopify/restyle";
 import { ImageStyle, TextStyle, ViewStyle } from "react-native";
 
-export const theme = {
+export const palette = {
+  green: "#2CB9B0",
+  white: "white",
+  pink: "#FF87A2",
+  orange: "#FE5E33",
+  violet: "#442CB9",
+  yellow: "#FFC641",
+  lightBlue: "#BFEAF5",
+  darkBlue: "#0C0D34",
+  darkGrey: "#808080",
+  grey: "rgba(12,13, 52, 0.05)",
+};
+
+const theme = {
   colors: {
-    primary: "#2CB9B0",
-    secondary: "#0C0D34",
+    primary: palette.green,
+    secondary: palette.darkBlue,
     danger: "#FF0058",
     text: "rgba(12,13,52, 0.7)",
-    white: "white",
-    grey: "rgba(12,13, 52, 0.05)",
-    lightGrey: "#FAFAFA",
-    darkGrey: "#808080",
+    background: palette.white,
+    backgroundSecondary: palette.grey,
+    info: palette.darkGrey,
     primaryLight: "#E7F9F7",
-    pink: "#FF87A2",
-    orange: "#FE5E33",
-    violet: "#442CB9",
-    yellow: "#FFC641",
-    lightBlue: "#BFEAF5",
+    graph1: palette.yellow,
+    graph2: palette.orange,
+    drawer1: palette.green,
+    drawer2: palette.orange,
+    drawer3: palette.yellow,
+    drawer4: palette.pink,
+    drawer5: palette.violet,
+    drawer6: palette.darkBlue,
   },
   spacing: {
     s: 8,
@@ -39,7 +56,7 @@ export const theme = {
       fontSize: 80,
       lineHeight: 80,
       fontFamily: "SFProDisplay-Bold",
-      color: "white",
+      color: "background",
       textAlign: "center",
     },
     title1: {
@@ -78,13 +95,20 @@ export const theme = {
       color: "secondary",
     },
   },
-  breakpoints: {},
+  breakpoints: {
+    phone: 0,
+    tablet: 768,
+  },
 };
+
+export const ThemeProvider = ({ children }: { children: React.ReactNode }) => (
+  <ReStyleThemeProvider theme={theme}>{children}</ReStyleThemeProvider>
+);
 
 export type Theme = typeof theme;
 export const Box = createBox<Theme>();
 export const Text = createText<Theme>();
-export const useTheme = () => useReTheme();
+export const useTheme = () => useReTheme<Theme>();
 
 type NamedStyles<T> = { [P in keyof T]: ViewStyle | TextStyle | ImageStyle };
 

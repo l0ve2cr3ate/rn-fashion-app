@@ -42,7 +42,7 @@ const TopCurve: FC<TopCurveProps> = ({ footerHeight }) => {
         cy={0.5}
         r={0.5}
         clipPath="url(#clip)"
-        fill={theme.colors.orange}
+        fill={theme.colors.graph2}
       />
     </Svg>
   );

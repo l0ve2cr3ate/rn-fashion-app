@@ -7,21 +7,34 @@ import { RoundedIcon } from "../../components";
 import { HomeRoutes } from "../../components/Navigation";
 import { Box, Theme, Text, useTheme } from "../../components/Theme";
 
-export interface DrawerIconProps {
+interface BaseDrawerItem {
   icon: string;
   color: keyof Theme["colors"];
-  screen: keyof HomeRoutes;
   label: string;
 }
 
-const DrawerItem: FC<DrawerIconProps> = ({ icon, color, screen, label }) => {
+interface ScreenDrawerItem extends BaseDrawerItem {
+  screen: keyof HomeRoutes;
+}
+
+interface OnPressDrawerItem extends BaseDrawerItem {
+  onPress: (navigation: ReturnType<typeof useNavigation>) => void;
+}
+
+export type DrawerItemProps = ScreenDrawerItem | OnPressDrawerItem;
+
+const DrawerItem: FC<DrawerItemProps> = ({ icon, color, label, ...props }) => {
   const theme = useTheme();
-  const { navigate } = useNavigation<
+  const navigation = useNavigation<
     DrawerNavigationProp<HomeRoutes, "OutfitIdeas">
   >();
   return (
     <RectButton
-      onPress={() => navigate(screen)}
+      onPress={() =>
+        "screen" in props
+          ? navigation.navigate(props.screen)
+          : props.onPress(navigation)
+      }
       style={{ borderRadius: theme.borderRadii.m }}
     >
       <Box flexDirection="row" alignItems="center" padding="s">
@@ -29,7 +42,7 @@ const DrawerItem: FC<DrawerIconProps> = ({ icon, color, screen, label }) => {
           iconRatio={0.5}
           name={icon}
           backgroundColor={color}
-          color="white"
+          color="background"
           size={36}
         />
         <Text variant="button" color="secondary" marginLeft="m">

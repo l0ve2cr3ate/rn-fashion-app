@@ -41,11 +41,11 @@ const Underlay: FC<UnderlayProps> = ({
             }}
           >
             <Box width={theme.spacing[MARGIN]} paddingRight="s">
-              <Text textAlign="right" color="darkGrey">
+              <Text textAlign="right" color="info">
                 {Math.round(lerp(minY, maxY, t))}
               </Text>
             </Box>
-            <Box flex={1} height={1} backgroundColor="grey" />
+            <Box flex={1} height={1} backgroundColor="backgroundSecondary" />
           </Box>
         ))}
       </Box>
@@ -60,7 +60,7 @@ const Underlay: FC<UnderlayProps> = ({
           .map((_, i) => moment(minDate.clone().add(i, "month")))
           .map((date, index) => (
             <Box key={index} width={step}>
-              <Text color="darkGrey" textAlign="center">
+              <Text color="info" textAlign="center">
                 {date.format("MMM")}
               </Text>
             </Box>

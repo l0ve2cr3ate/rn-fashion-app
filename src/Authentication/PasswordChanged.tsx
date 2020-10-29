@@ -21,7 +21,7 @@ const PasswordChanged = ({
       footer={
         <Box flexDirection="row" justifyContent="center" marginBottom="l">
           <RoundedIconButton
-            backgroundColor="white"
+            backgroundColor="background"
             color="secondary"
             name="x"
             size={60}

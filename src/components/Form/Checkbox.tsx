@@ -24,7 +24,7 @@ const Checkbox: FC<CheckboxProps> = ({ label, checked, onChange }) => {
           borderRadius="s"
           borderWidth={1}
           borderColor="primary"
-          backgroundColor={checked ? "primary" : "white"}
+          backgroundColor={checked ? "primary" : "background"}
           justifyContent="center"
           alignItems="center"
         >

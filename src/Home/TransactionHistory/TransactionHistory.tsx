@@ -37,13 +37,13 @@ const data: DataPoint[] = [
   {
     date: new Date("2019-11-01").getTime(),
     value: 281.23,
-    color: "orange",
+    color: "graph2",
     id: 245673,
   },
   {
-    date: new Date("2020-02-01").getTime(),
+    date: new Date("2020-01-01").getTime(),
     value: 198.54,
-    color: "yellow",
+    color: "graph1",
     id: 245674,
   },
 ];
@@ -53,7 +53,7 @@ const TransactionHistory = ({
 }: HomeNavigationProps<"TransactionHistory">) => {
   const styles = useStyles();
   return (
-    <Box flex={1} backgroundColor="white">
+    <Box flex={1} backgroundColor="background">
       <Header
         left={{ icon: "menu", onPress: () => navigation.openDrawer() }}
         right={{ icon: "share", onPress: () => true }}

@@ -71,17 +71,21 @@ const FavoriteOutfits = ({
   navigation,
 }: HomeNavigationProps<"FavoriteOutfits">) => {
   const theme = useTheme();
+
   const width = (wWidth - theme.spacing.m * 3) / 2;
   const [footerHeight, setFooterHeight] = useState(0);
   const [outfits, setOutfits] = useState(defaultOutfits);
   const list = useRef<TransitioningView>(null);
 
   const transition = (
-    <Transition.Change interpolation="easeOut" durationMs={1000} />
+    <Transition.Together>
+      <Transition.Out type="fade" />
+      <Transition.In type="fade" />
+    </Transition.Together>
   );
 
   return (
-    <Box flex={1} backgroundColor="white">
+    <Box flex={1} backgroundColor="background">
       <Header
         title="Favorite Outfits"
         left={{ icon: "menu", onPress: () => navigation.openDrawer() }}
@@ -98,14 +102,14 @@ const FavoriteOutfits = ({
             <Box flexDirection="row">
               <Box marginRight="m">
                 {outfits
-                  .filter(({ id }) => id % 2 !== 0)
+                  .filter((_, i) => i % 2 !== 0)
                   .map((outfit) => (
                     <Outfit key={outfit.id} {...{ width, outfit }} />
                   ))}
               </Box>
               <Box>
                 {outfits
-                  .filter(({ id }) => id % 2 === 0)
+                  .filter((_, i) => i % 2 === 0)
                   .map((outfit) => (
                     <Outfit key={outfit.id} {...{ width, outfit }} />
                   ))}

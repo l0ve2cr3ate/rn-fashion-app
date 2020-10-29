@@ -1,10 +1,14 @@
-import { DrawerActions, useNavigation } from "@react-navigation/native";
+import {
+  CommonActions,
+  DrawerActions,
+  useNavigation,
+} from "@react-navigation/native";
 import React from "react";
 import { Dimensions, Image } from "react-native";
 
 import { Box, Header, Text, useTheme } from "../../components";
 
-import DrawerItem, { DrawerIconProps } from "./DrawerItem";
+import DrawerItem, { DrawerItemProps } from "./DrawerItem";
 
 const { width } = Dimensions.get("window");
 export const DRAWER_WIDTH = width * 0.8;
@@ -12,42 +16,48 @@ const aspectRatio = 750 / 1125;
 const height = DRAWER_WIDTH * aspectRatio;
 
 export const assets = [require("../../../assets/drawer.png")];
-const items: DrawerIconProps[] = [
+const items: DrawerItemProps[] = [
   {
     icon: "zap",
     label: "Outfit Ideas",
     screen: "OutfitIdeas",
-    color: "primary",
+    color: "drawer1",
   },
   {
     icon: "heart",
     label: "Favorite Outfits",
     screen: "FavoriteOutfits",
-    color: "orange",
+    color: "drawer2",
   },
   {
     icon: "user",
     label: "Edit Profile",
     screen: "EditProfile",
-    color: "yellow",
+    color: "drawer3",
   },
   {
     icon: "clock",
     label: "Transaction History",
     screen: "TransactionHistory",
-    color: "pink",
+    color: "drawer4",
   },
   {
     icon: "settings",
     label: "Notification Settings",
     screen: "NotificationSettings",
-    color: "violet",
+    color: "drawer5",
   },
   {
     icon: "log-out",
     label: "Log Out",
-    screen: "LogOut",
-    color: "secondary",
+    onPress: (navigation) =>
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: "Authentication" }],
+        })
+      ),
+    color: "drawer6",
   },
 ];
 
@@ -57,7 +67,7 @@ const Drawer = () => {
 
   return (
     <Box flex={1}>
-      <Box flex={0.2} backgroundColor="white">
+      <Box flex={0.2} backgroundColor="background">
         <Box
           position="absolute"
           top={0}
@@ -86,7 +96,7 @@ const Drawer = () => {
           left={0}
           right={0}
           bottom={0}
-          backgroundColor="white"
+          backgroundColor="background"
           borderTopLeftRadius="xl"
           borderBottomRightRadius="xl"
           justifyContent="center"
@@ -110,12 +120,12 @@ const Drawer = () => {
             </Text>
           </Box>
           {items.map((item) => (
-            <DrawerItem key={item.screen} {...item} />
+            <DrawerItem key={item.color} {...item} />
           ))}
         </Box>
       </Box>
       <Box
-        backgroundColor="white"
+        backgroundColor="background"
         width={DRAWER_WIDTH}
         height={height * 0.61}
         overflow="hidden"

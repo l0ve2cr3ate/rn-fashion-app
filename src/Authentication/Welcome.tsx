@@ -18,11 +18,11 @@ export const assets = [picture.src];
 const Welcome = ({ navigation }: AuthNavigationProps<"Welcome">) => {
   const theme = useTheme();
   return (
-    <Box backgroundColor="white" flex={1}>
+    <Box backgroundColor="background" flex={1}>
       <Box
         flex={1}
         borderBottomRightRadius="xl"
-        backgroundColor="grey"
+        backgroundColor="backgroundSecondary"
         alignItems="center"
         justifyContent="flex-end"
       >
@@ -37,7 +37,7 @@ const Welcome = ({ navigation }: AuthNavigationProps<"Welcome">) => {
       </Box>
       <Box flex={1} borderTopLeftRadius="xl">
         <Box
-          backgroundColor="grey"
+          backgroundColor="backgroundSecondary"
           position="absolute"
           top={0}
           bottom={0}
@@ -45,7 +45,7 @@ const Welcome = ({ navigation }: AuthNavigationProps<"Welcome">) => {
           right={0}
         />
         <Box
-          backgroundColor="white"
+          backgroundColor="background"
           borderTopLeftRadius="xl"
           flex={1}
           justifyContent="space-evenly"

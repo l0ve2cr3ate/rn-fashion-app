@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { TextInput as RNTextInput } from "react-native";
 import { BorderlessButton } from "react-native-gesture-handler";
+import { CommonActions } from "@react-navigation/native";
 
 import { Button, Container, Text } from "../components";
 import { Box } from "../components/Theme";
@@ -41,7 +42,14 @@ const Login = ({ navigation }: AuthNavigationProps<"Login">) => {
     <Footer
       title="Don't have an account?"
       action="Sign up here"
-      onPress={() => navigation.navigate("SignUp")}
+      onPress={() =>
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [{ name: "Home" }],
+          })
+        )
+      }
     />
   );
 
