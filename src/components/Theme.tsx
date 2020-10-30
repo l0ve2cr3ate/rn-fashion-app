@@ -26,6 +26,7 @@ const theme = {
     secondary: palette.darkBlue,
     danger: "#FF0058",
     text: "rgba(12,13,52, 0.7)",
+    textContrast: palette.white,
     background: palette.white,
     backgroundSecondary: palette.grey,
     info: palette.darkGrey,
