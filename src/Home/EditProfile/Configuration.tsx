@@ -43,7 +43,7 @@ const Configuration = () => {
     <ScrollView>
       <Box padding="m">
         <Text variant="body">What type of outfit do you usually wear?</Text>
-        <CheckboxGroup options={outfitType} />
+        <CheckboxGroup options={outfitType} radio />
 
         <Text variant="body">What is your clothing size?</Text>
         <RoundedCheckboxGroup options={sizes} />

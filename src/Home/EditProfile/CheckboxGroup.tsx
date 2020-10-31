@@ -6,9 +6,10 @@ type Option = { value: string; label: string };
 
 interface CheckboxGroupProps {
   options: Option[];
+  radio?: boolean;
 }
 
-const CheckboxGroup: FC<CheckboxGroupProps> = ({ options }) => {
+const CheckboxGroup: FC<CheckboxGroupProps> = ({ options, radio }) => {
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
   const theme = useTheme();
   return (
@@ -22,12 +23,16 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({ options }) => {
             variant={isSelected ? "primary" : "default"}
             label={label}
             onPress={() => {
-              if (isSelected) {
-                selectedValues.splice(index, 1);
+              if (radio) {
+                setSelectedValues([value]);
               } else {
-                selectedValues.push(value);
+                if (isSelected) {
+                  selectedValues.splice(index, 1);
+                } else {
+                  selectedValues.push(value);
+                }
+                setSelectedValues([...selectedValues]);
               }
-              setSelectedValues([...selectedValues]);
             }}
             style={{
               width: "auto",
