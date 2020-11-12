@@ -18,6 +18,8 @@ export const palette = {
   darkBlue: "#0C0D34",
   darkGrey: "#808080",
   grey: "rgba(12,13, 52, 0.05)",
+  grey200: "#f4f3f4"
+
 };
 
 const theme = {
@@ -39,6 +41,7 @@ const theme = {
     drawer4: palette.pink,
     drawer5: palette.violet,
     drawer6: palette.darkBlue,
+    switch: palette.grey200
   },
   spacing: {
     s: 8,
