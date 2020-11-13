@@ -3,7 +3,7 @@ import { Dimensions, Image, StyleSheet, View } from "react-native";
 import Animated, {
   divide,
   Extrapolate,
-  interpolate,
+  interpolateNode,
   multiply,
 } from "react-native-reanimated";
 import {
@@ -121,7 +121,7 @@ const Onboading = ({ navigation }: AuthNavigationProps<"Onboarding">) => {
     <View style={styles.container}>
       <Animated.View style={[styles.slider, { backgroundColor }]}>
         {slides.map(({ picture }, index) => {
-          const opacity = interpolate(x, {
+          const opacity = interpolateNode(x, {
             inputRange: [
               (index - 0.5) * width,
               index * width,
