@@ -31,20 +31,20 @@ const Content: FC<ContentProps> = ({ children }) => {
   const theme = useTheme();
   return (
     <>
-    <View style={styles.background}>
-      <Image
-        source={require("../../assets/pattern1.png")}
-        style={styles.image}
-      />
-      <Image
-        source={require("../../assets/pattern2.png")}
-        style={styles.image}
-      />
-      <Image
-        source={require("../../assets/pattern3.png")}
-        style={styles.image}
-      />
-       </View>
+      <View style={styles.background}>
+        <Image
+          source={require("../../assets/pattern1.png")}
+          style={styles.image}
+        />
+        <Image
+          source={require("../../assets/pattern2.png")}
+          style={styles.image}
+        />
+        <Image
+          source={require("../../assets/pattern3.png")}
+          style={styles.image}
+        />
+      </View>
       {children}
       <Svg
         width={width}
@@ -53,7 +53,7 @@ const Content: FC<ContentProps> = ({ children }) => {
       >
         <Path d={d} fill={theme.colors.background} />
       </Svg>
-   </>
+    </>
   );
 };
 
