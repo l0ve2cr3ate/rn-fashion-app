@@ -1,9 +1,7 @@
 import React from "react";
 import { Dimensions } from "react-native";
-import { PanGestureHandler } from "react-native-gesture-handler";
 
 import Animated from "react-native-reanimated";
-import { usePanGestureHandler } from "react-native-redash";
 
 import { Box, useTheme } from "../../components";
 
@@ -12,7 +10,7 @@ const height = (1125 * width) / 750;
 
 const Cart = () => {
   const theme = useTheme();
-  const onGestureEvent = usePanGestureHandler();
+
   return (
     <Box flex={1} backgroundColor="secondary">
       <Animated.View

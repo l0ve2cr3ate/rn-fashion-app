@@ -3,10 +3,13 @@ import { Dimensions, Image, StyleSheet, View } from "react-native";
 import Animated, {
   divide,
   Extrapolate,
-  interpolate,
+  interpolateNode,
   multiply,
 } from "react-native-reanimated";
-import { useScrollHandler, interpolateColor } from "react-native-redash";
+import {
+  useScrollHandler,
+  interpolateColor,
+} from "react-native-redash/lib/module/v1";
 
 import { AuthNavigationProps } from "../../components/Navigation";
 import { useTheme } from "../../components";
@@ -118,7 +121,7 @@ const Onboading = ({ navigation }: AuthNavigationProps<"Onboarding">) => {
     <View style={styles.container}>
       <Animated.View style={[styles.slider, { backgroundColor }]}>
         {slides.map(({ picture }, index) => {
-          const opacity = interpolate(x, {
+          const opacity = interpolateNode(x, {
             inputRange: [
               (index - 0.5) * width,
               index * width,
