@@ -6,7 +6,10 @@ import Animated, {
   interpolate,
   multiply,
 } from "react-native-reanimated";
-import { useScrollHandler, interpolateColor } from "react-native-redash";
+import {
+  useScrollHandler,
+  interpolateColor,
+} from "react-native-redash/lib/module/v1";
 
 import { AuthNavigationProps } from "../../components/Navigation";
 import { useTheme } from "../../components";

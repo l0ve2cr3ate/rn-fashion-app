@@ -16,7 +16,10 @@ import Animated, {
   useCode,
   useValue,
 } from "react-native-reanimated";
-import { useClock, useTapGestureHandler } from "react-native-redash";
+import {
+  useClock,
+  useTapGestureHandler,
+} from "react-native-redash/lib/module/v1";
 
 interface BorderlessTapProps {
   children: ReactNode;
