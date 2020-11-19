@@ -2,13 +2,11 @@ import React, { FC, ReactNode, useCallback, useRef } from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
 import { PanGestureHandler } from "react-native-gesture-handler";
 import Animated, {
-  Transition,
-  Transitioning,
-  TransitioningView,
   useAnimatedGestureHandler,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
+  withTiming,
 } from "react-native-reanimated";
 import { snapPoint } from "react-native-redash";
 import { LinearGradient } from "expo-linear-gradient";
@@ -22,19 +20,21 @@ const editWidth = 85 * aspectRatio;
 const finalDestination = width;
 const snapPoints = [-editWidth, 0, finalDestination];
 
-const transition = <Transition.Out type="fade" />;
-
 interface SwipaebleRowProps {
   children: ReactNode;
   onDelete: () => void;
+  height: number;
 }
 
-const SwipaebleRow: FC<SwipaebleRowProps> = ({ children, onDelete }) => {
-  const ref = useRef<TransitioningView>(null);
+const SwipaebleRow: FC<SwipaebleRowProps> = ({
+  children,
+  onDelete,
+  height: defaultHeight,
+}) => {
+  const height = useSharedValue(defaultHeight);
   const deleteItem = useCallback(() => {
-    ref.current?.animateNextTransition();
     onDelete();
-  }, [ref, onDelete]);
+  }, [onDelete]);
   const theme = useTheme();
   const translateX = useSharedValue(0);
   const onGestureEvent = useAnimatedGestureHandler<{ x: number }>({
@@ -48,13 +48,13 @@ const SwipaebleRow: FC<SwipaebleRowProps> = ({ children, onDelete }) => {
       const dest = snapPoint(translateX.value, velocityX, snapPoints);
       translateX.value = withSpring(dest, { overshootClamping: true }, () => {
         if (dest === finalDestination) {
-          //TODO: this runs on JS thread, needs to be updated when Expo can run alpha 8 of reanimated
-          deleteItem();
+          height.value = withTiming(0, { duration: 250 }, () => deleteItem());
         }
       });
     },
   });
   const style = useAnimatedStyle(() => ({
+    height: height.value,
     backgroundColor: theme.colors.background,
     transform: [{ translateX: translateX.value }],
   }));
@@ -67,7 +67,7 @@ const SwipaebleRow: FC<SwipaebleRowProps> = ({ children, onDelete }) => {
   }));
 
   return (
-    <Transitioning.View ref={ref} transition={transition}>
+    <View>
       <Animated.View style={[StyleSheet.absoluteFill, , deleteStyle]}>
         <LinearGradient
           style={StyleSheet.absoluteFill}
@@ -119,7 +119,7 @@ const SwipaebleRow: FC<SwipaebleRowProps> = ({ children, onDelete }) => {
       <PanGestureHandler onGestureEvent={onGestureEvent}>
         <Animated.View style={style}>{children}</Animated.View>
       </PanGestureHandler>
-    </Transitioning.View>
+    </View>
   );
 };
 
