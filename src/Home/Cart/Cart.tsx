@@ -6,6 +6,7 @@ import { Box, Header, useTheme, Text } from "../../components";
 import { HomeNavigationProps } from "../../components/Navigation";
 
 import CartContainer from "./CartContainer";
+import Checkout from "./Checkout";
 import Item from "./Item";
 
 const { width } = Dimensions.get("window");
@@ -20,7 +21,7 @@ const Cart = ({ navigation }: HomeNavigationProps<"Cart">) => {
   const theme = useTheme();
 
   return (
-    <CartContainer>
+    <CartContainer CheckoutComponent={Checkout}>
       <Box backgroundColor="primary">
         <Header
           dark

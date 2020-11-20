@@ -18,9 +18,13 @@ const minHeight = 228 * aspectRatio;
 
 interface CartContainerProps {
   children: ReactNode;
+  CheckoutComponent: FC<{ minHeight: number }>;
 }
 
-const CartContainer: FC<CartContainerProps> = ({ children }) => {
+const CartContainer: FC<CartContainerProps> = ({
+  children,
+  CheckoutComponent,
+}) => {
   const theme = useTheme();
   const translateY = useSharedValue(0);
   const snapPoints = [-(height - minHeight), 0];
@@ -44,7 +48,8 @@ const CartContainer: FC<CartContainerProps> = ({ children }) => {
     transform: [{ translateY: translateY.value }],
   }));
   return (
-    <Box flex={1} backgroundColor="secondary">
+    <Box flex={1}>
+      <CheckoutComponent minHeight={minHeight} />
       <PanGestureHandler onGestureEvent={onGestureEvent}>
         <Animated.View
           style={[
