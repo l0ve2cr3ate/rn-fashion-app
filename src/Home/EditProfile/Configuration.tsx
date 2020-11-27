@@ -42,13 +42,13 @@ const Configuration = () => {
   return (
     <ScrollView>
       <Box padding="m">
-        <Text variant="body">What type of outfit do you usually wear?</Text>
+        <Text variant="body">What type of outfits do you usually wear?</Text>
         <CheckboxGroup options={outfitType} radio />
 
         <Text variant="body">What is your clothing size?</Text>
         <RoundedCheckboxGroup options={sizes} />
 
-        <Text variant="body">My preferred clothing colors?</Text>
+        <Text variant="body">My preferred clothing colors</Text>
         <RoundedCheckboxGroup options={colors} valueIsColor />
 
         <Text variant="body">My preferred brands</Text>
