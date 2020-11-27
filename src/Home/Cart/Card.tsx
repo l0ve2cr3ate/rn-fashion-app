@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { Image, View } from "react-native";
+
 import { Text } from "../../components";
 
 import CardLayout from "./CardLayout";
@@ -21,7 +22,9 @@ interface CardProps {
   onSelect: () => void;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const visaLogo = require("../../../assets/visa-logo.png");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const mastercardLogo = require("../../../assets/mastercard-logo.png");
 
 const Card: FC<CardProps> = ({ card, selected, onSelect }) => {

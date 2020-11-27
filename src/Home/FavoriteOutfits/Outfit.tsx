@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
+import { BorderlessButton } from "react-native-gesture-handler";
 
-import { BorderlessTap, Box, RoundedIcon } from "../../components";
+import { Box, RoundedIcon } from "../../components";
 
 interface OutfitProps {
   outfit: {
@@ -15,7 +16,7 @@ interface OutfitProps {
 const Outfit: FC<OutfitProps> = ({ outfit, width }) => {
   const [selected, setSelected] = useState(false);
   return (
-    <BorderlessTap
+    <BorderlessButton
       onPress={() => {
         setSelected((prev) => !prev);
         outfit.selected = !outfit.selected;
@@ -41,7 +42,7 @@ const Outfit: FC<OutfitProps> = ({ outfit, width }) => {
           />
         )}
       </Box>
-    </BorderlessTap>
+    </BorderlessButton>
   );
 };
 
